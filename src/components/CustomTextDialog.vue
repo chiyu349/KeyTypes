@@ -84,12 +84,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
             </label>
             <label class="field">
               <span>文本（汉字、空格与标点，最多 800 字）</span>
-              <textarea
-                v-model="text"
-                class="textarea"
-                maxlength="800"
-                placeholder="例如：每天练习二十分钟效果会比周末突击更好"
-              />
+              <textarea v-model="text" class="textarea" maxlength="800" placeholder="例如：每天练习二十分钟效果会比周末突击更好" />
             </label>
           </div>
 

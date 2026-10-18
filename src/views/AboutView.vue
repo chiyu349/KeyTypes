@@ -67,8 +67,8 @@ import { WUBI_META } from '@/domain/wubi'
 │  ├─ main.ts  App.vue  router.ts
 │  ├─ styles/                  主题变量与基础样式
 │  ├─ types.ts                 全局类型与存储结构
-│  ├─ components/              练习区、统计、键位提示、弹窗、趋势图
-│  ├─ views/                   练习 / 成绩 / 说明
+│  ├─ components/              练习区、统计、键位提示、键位图、弹窗、趋势图
+│  ├─ views/                   练习 / 成绩 / 参考 / 说明
 │  ├─ domain/
 │  │  ├─ engine.ts             逐键判定内核
 │  │  ├─ pinyin.ts             汉字转无声调拼音
@@ -79,6 +79,8 @@ import { WUBI_META } from '@/domain/wubi'
 │  ├─ data/
 │  │  ├─ corpus.ts             汉字、词语、短句、段落语料
 │  │  ├─ levels.ts             三法 × 6 级课程定义
+│  │  ├─ keyboard.ts           QWERTY 键位行
+│  │  ├─ reference.ts          五笔/双拼参考数据与速记
 │  │  └─ wubi86.json           五笔 86 单字码表
 │  ├─ lib/                     格式化、存储、提示音、备份
 │  └─ stores/                  设置、练习会话、成绩、自定义文本

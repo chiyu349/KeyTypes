@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import('@/views/ProgressView.vue'),
     },
     {
+      path: '/reference',
+      name: 'reference',
+      component: () => import('@/views/ReferenceView.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue'),

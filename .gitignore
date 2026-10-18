@@ -1,0 +1,21 @@
+# 排除项
+# node项目
+node_modules
+
+# 打包文件
+dist
+
+# 临时文件
+.tmp
+*.local
+.DS_Store
+
+# 日志文件
+*.log
+
+# 编辑器文件
+.idea
+.vscode
+
+# 测试文件
+tests/*

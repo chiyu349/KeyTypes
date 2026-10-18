@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(),
+  // 与 Vite 的 base 保持一致，部署到 GitHub Pages 子路径时路由仍能正确匹配
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',

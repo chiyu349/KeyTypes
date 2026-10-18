@@ -32,6 +32,38 @@ pnpm typecheck  # 只做类型检查
 
 构建产物是纯静态文件。因为使用 HTML5 History 路由，部署到静态服务器时需要把未知路径回退到 `index.html`（Nginx `try_files $uri $uri/ /index.html;`）。
 
+## 部署到 GitHub Pages
+
+仓库内已包含 `.github/workflows/deploy.yml`：推送到 `main` 后会自动构建并发布。
+
+1. 把 `qwer/` 作为仓库根目录推送到 GitHub（当前仓库为 `chiyu349/KeyTypes`）。
+2. 打开仓库 **Settings → Pages → Build and deployment → Source**，选择 **GitHub Actions**。
+   workflow 中的 `configure-pages` 会尝试自动开启 Pages；若首次运行提示 Pages 未启用，手动设置一次即可。
+3. 推送后进入 **Actions → Deploy to GitHub Pages** 查看构建与部署进度。
+4. 成功后访问 `https://<用户名>.github.io/<仓库名>/`，本项目即 <https://chiyu349.github.io/KeyTypes/>。
+
+说明：
+
+- 工作流根据仓库名自动设置 `VITE_BASE=/<仓库名>/`；仓库名形如 `<user>.github.io` 时使用 `/`。本地 `pnpm dev` 仍使用 `/`。
+- History 路由需要 404 回退：工作流会生成 `dist/404.html`（入口页副本）和 `dist/.nojekyll`。
+- 使用自定义域名（CNAME）时站点位于域名根路径，需要把 workflow 计算出的 `VITE_BASE` 改为 `/`。
+- 私有仓库使用 Pages 需要 GitHub Pro，公开仓库免费。
+
+本地验证 Pages 构建：
+
+```powershell
+$env:VITE_BASE="/KeyTypes/"
+pnpm build
+pnpm preview
+```
+
+```bash
+# macOS / Linux / Git Bash
+VITE_BASE=/KeyTypes/ pnpm build && pnpm preview
+```
+
+手动部署（不使用 Actions）时，执行 `pnpm build` 后把 `dist/` 上传到任意静态服务器，并配置 404 → `index.html`。
+
 ## 项目结构
 
 ```
@@ -40,6 +72,8 @@ qwer/
 ├─ package.json                依赖与脚本
 ├─ vite.config.ts              Vite + Vitest 配置（@ 指向 src）
 ├─ pnpm-workspace.yaml         pnpm 构建脚本许可
+├─ .github/workflows/
+│  └─ deploy.yml               GitHub Pages 自动构建与部署
 ├─ scripts/
 │  └─ build-wubi-dict.mjs      从 Rime 五笔码表生成 src/data/wubi86.json
 ├─ src/
